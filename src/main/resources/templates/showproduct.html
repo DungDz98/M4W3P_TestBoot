@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+</head>
+<body>
+<div><a href="/admin/create-product">Tạo sản phẩm</a></div>
+<table th:if="${products.size() > 0}">
+    <tr>
+        <th>Id sản phẩm</th>
+        <th>Tên sản phẩm</th>
+        <th>Ảnh minh hoạ</th>
+        <th>Giá</th>
+        <th>Loại sản phẩm</th>
+        <th>Xoá</th>
+        <th>Sửa</th>
+    </tr>
+    <tr th:each="p : ${products}">
+        <td th:text="${p.getId()}"></td>
+        <td th:text="${p.getProductName()}"></td>
+        <td><img th:src="@{${p.getImg()}}" alt="img" style="width: 100px; height: 100px"></td>
+        <td th:text="${p.getPrice()}"></td>
+        <td th:text="${p.getCategory().getName()}"></td>
+        <td><a th:href="@{/admin/delete-product(id=${p.getId()})}">Xoá</a></td>
+        <td><a th:href="@{/admin/edit-product(id=${p.getId()})}">Sửa</a></td>
+    </tr>
+</table>
+</body>
+</html>

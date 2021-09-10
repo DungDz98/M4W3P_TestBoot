@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Welcome to Trang chủ</h1>
+<h1 th:text="'Hello ' + ${username}"></h1>
+<div sec:authorize="isAuthenticated()">
+    <sec:authorize access="hasRole('ADMIN')">
+        <a th:href="@{/admin/manage-product}">Quản lý sản phẩm</a>
+    </sec:authorize>
+    <a th:href="@{/logout}">Đăng xuất</a>
+</div>
+</body>
+</html>

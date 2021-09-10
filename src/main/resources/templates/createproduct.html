@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product</title>
+</head>
+<body>
+<form th:action="@{/admin/create-product}" method="post" enctype="multipart/form-data" th:object="${product}">
+    <table>
+        <tr>
+            <td>Tên sản phẩm</td>
+            <td>
+                <input type="text" th:field="*{productName}">
+                <p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" style="color: darkred">abc</p>
+            </td>
+        </tr>
+        <tr>
+            <td>Giá sản phẩm</td>
+            <td><input type="text" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Ảnh sản phẩm</td>
+            <td><input type="file" name=imgProduct></td>
+        </tr>
+        <tr>
+            <td>Loại sản phẩm</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="c: ${categorys}" th:value="${c.id}" th:text="${c.name}" ></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Tạo"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
